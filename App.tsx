@@ -1,18 +1,13 @@
 import React, {useCallback, useState} from 'react';
-import {
-  StatusBar,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {StatusBar, StyleSheet, View} from 'react-native';
 import {useCameraDevice, useCameraPermission} from 'react-native-vision-camera';
 
 import PermissionsPage from './src/components/PermissionsPage';
 import NoCameraDeviceError from './src/components/NoCameraDeviceError';
 import Camera from './src/components/Camera';
-import {colors} from './colors';
 import ButtonHome from './src/components/ButtonHome';
+import CameraQRCode from './src/components/CameraQRCode';
+import {colors} from './colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -54,9 +49,16 @@ function App(): React.JSX.Element {
           onPress={() => handleSelectScreen('camera')}
           title="Câmera"
         />
+
+        <ButtonHome
+          onPress={() => handleSelectScreen('qrcode')}
+          title="QR Code"
+        />
       </View>
 
       {screen === 'camera' && <Camera onClose={handleCloseScreen} />}
+
+      {screen === 'qrcode' && <CameraQRCode onClose={handleCloseScreen} />}
 
       <StatusBar backgroundColor={colors.black} barStyle="light-content" />
     </View>

@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   },
 });
 
-type IScreen = 'camera' | 'qrcode' | 'barcode' | 'generateQrcode' | undefined;
+type IScreen = 'camera' | 'qrcode' | 'generateQrcode' | undefined;
 
 function App(): React.JSX.Element {
   const device = useCameraDevice('back');
@@ -52,7 +52,7 @@ function App(): React.JSX.Element {
 
         <ButtonHome
           onPress={() => handleSelectScreen('qrcode')}
-          title="QR Code"
+          title="QR Code / Código de barras"
         />
       </View>
 

@@ -1,5 +1,12 @@
 import React, {useRef, useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Alert,
+  Linking,
+} from 'react-native';
 import {
   Camera as RNCamera,
   useCameraDevice,
@@ -7,6 +14,7 @@ import {
 } from 'react-native-vision-camera';
 
 import {colors} from '../../../colors';
+import ButtonHome from '../ButtonHome';
 
 type Props = {
   onClose: () => void;
@@ -44,7 +52,17 @@ const CameraQRCode = ({onClose}: Props) => {
   const cameraRef = useRef<RNCamera>(null);
 
   const codeScanner = useCodeScanner({
-    codeTypes: ['qr', 'ean-13'],
+    codeTypes: [
+      'qr',
+      'ean-13',
+      'codabar',
+      'upc-a',
+      'code-39',
+      'code-128',
+      'code-93',
+      'upc-e',
+      'pdf-417',
+    ],
     onCodeScanned: codes => {
       try {
         if (!scanned) {
@@ -84,6 +102,17 @@ const CameraQRCode = ({onClose}: Props) => {
         <View style={styles.content}>
           <Text style={styles.textButtonClose}>Tipo: {scanned.type}</Text>
           <Text style={styles.textButtonClose}>Valor: {scanned.value}</Text>
+
+          <ButtonHome
+            title="Abrir link"
+            onPress={() => {
+              try {
+                Linking.openURL(scanned.value || '');
+              } catch (error) {
+                Alert.alert('Erro', JSON.stringify(error));
+              }
+            }}
+          />
         </View>
       </View>
     );

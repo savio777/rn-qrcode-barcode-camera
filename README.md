@@ -3,6 +3,6 @@
 ### todo:
 - [ ] read qr code
 - [ ] read bar code
-- [ ] take picture with camera
+- [x] take picture with camera
 - [ ] generate qr code svg
 

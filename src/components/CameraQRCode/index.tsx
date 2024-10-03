@@ -125,7 +125,7 @@ const CameraQRCode = ({onClose}: Props) => {
         style={StyleSheet.absoluteFill}
         device={device}
         codeScanner={codeScanner}
-        isActive
+        isActive={!scanned}
       />
 
       <TouchableOpacity style={styles.buttonClose} onPress={handleBack}>
